@@ -13,6 +13,7 @@ class order:
         self.topping = topping
         self.hours = 0
         self.min = 0
+        self.time = 0
 
     def plus_1_hour(self):
         self.hours += 1
@@ -63,12 +64,20 @@ class order:
     def get_full_order(self):
         return f'{self.type} {self.size} Сироп: {self.topping} к {self.hours}:{self.min}'
 
+    def get_full_order_hand_input(self):
+        return f'{self.type} {self.size} Сироп: {self.topping} к {self.time}'
+
     def get_type(self):
         return self.type
 
     def get_type_drink(self):
         return self.type_drink
 
+    def set_time(self, time):
+        self.time = time
+
+    def get_time(self):
+        return time
 
 # ord = order()
 # e = ord.get_type()

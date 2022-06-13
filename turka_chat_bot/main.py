@@ -20,14 +20,58 @@ ord = order()
 
 @bot.message_handler(commands=['start'])
 def start(message):
+    print(message.from_user.id)
+    print(settings.ADMIN_ID)
+    if f'{message.from_user.id}' in settings.ADMIN_ID:
+        markup_inline = types.InlineKeyboardMarkup()
+        item_yes = types.InlineKeyboardButton(text='Да', callback_data='Да')
+        markup_inline.add(item_yes)
+        bot.send_message(message.chat.id,
+                         text=f"Привет, {message.from_user.first_name}! Добро пожаловать в TurkaBot\nХотите заказать кофе?",
+                         reply_markup=markup_inline)
+    else:
+        markup_inline = types.InlineKeyboardMarkup()
+        item_yes = types.InlineKeyboardButton(text='Удалить чат бота?', callback_data='login_admin')
+        markup_inline.add(item_yes)
+        bot.send_message(message.chat.id,
+                         text=f"Привет, {message.from_user.first_name}! Вы админ и можете управлять здесь всем)",
+                         reply_markup=markup_inline)
 
-    markup_inline = types.InlineKeyboardMarkup()
-    item_yes = types.InlineKeyboardButton(text='Да', callback_data='Да')
-    markup_inline.add(item_yes)
-    bot.send_message(message.chat.id,
-                     text=f"Привет, {message.from_user.first_name}! Добро пожаловать в TurkaBot\nХотите заказать кофе?",
-                     reply_markup=markup_inline)
-    print(ord.get_type())
+
+
+
+
+# def admin_menu(call):
+#     markup_inline = types.InlineKeyboardMarkup()
+#
+#     btn1 = types.InlineKeyboardButton(text="ауц", callback_data='+1 час')
+#     btn2 = types.InlineKeyboardButton(text="+30 минут", callback_data='+30 минут')
+#     btn3 = types.InlineKeyboardButton(text="+5 минут", callback_data='+5 минут')
+#     btn5 = types.InlineKeyboardButton(text="+1 минуту", callback_data='+1 минуту')
+#     btn4 = types.InlineKeyboardButton(text="Сброс", callback_data='Сброс')
+#     back = types.InlineKeyboardButton(text="Вернуться в главное меню", callback_data='main_menu')
+#     btn6 = types.InlineKeyboardButton(text="Подтвердить заказ", callback_data='Подтвердить заказ')
+#     btn7 = types.InlineKeyboardButton(text="Ввести вручную в формате 'ЧЧ:ММ'", callback_data='input_timer')
+#     markup_inline.add(btn1, btn2, btn3, btn4, btn5, btn6, btn7, back)
+#     hrs = ord.get_filing_hours()
+#     min = ord.get_filing_min()
+#
+#     if hrs == 24:
+#         hrs = '00'
+#     elif hrs in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]:
+#         hrs = '0' + str(hrs)
+#     if min in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]:
+#         min = '0' + str(min)
+#
+#     try:
+#         bot.send_message(call.message.chat.id, text=f"\nВремя подачи вашего кофе: {hrs}:{min}",
+#                          reply_markup=markup_inline)
+#     except:
+#         bot.send_message(call.chat.id, text=f"\nВремя подачи вашего кофе:{hrs}:{min}", reply_markup=markup_inline)
+
+
+def admin_menu(call):
+    pass
 
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -35,7 +79,11 @@ def callback_inline(call):
     bot.delete_message(call.message.chat.id, call.message.message_id)
     menu = json_manager.read_json()
 
-    if call.data == 'Да':
+    if call.data == 'login_admin':
+        admin_menu(call)
+
+
+    elif call.data == 'Да':
         menu_change_type_drinks(call)
 
     elif call.data == '+1 час':
@@ -91,15 +139,39 @@ def callback_inline(call):
     elif call.data == 'input_timer':
         menu_input_timer(call)
 
+    else:
+        bot.send_message(call.message.chat.id,'Пожалуйста нажмите на кнопку для дальнейшего выбора')
+
+
+
+@bot.message_handler(content_types=['text'])
+def hand_timer(message):
+
+    if re.findall(settings.PATTERN_TIMER, message.text):
+        ord.set_time(message.text)
+        bot.send_message(message.chat.id, text=f"\nВаш заказ:\n {ord.get_full_order_hand_input()}")
+        menu_main(message)
+
+    else:
+        bot.send_message(message.chat.id,
+                         text=f"Попробуйте ещё раз или напишите команду /start для того что бы начать сначала")
+
 
 
 def menu_main(call):
     markup_inline = types.InlineKeyboardMarkup()
     item_yes = types.InlineKeyboardButton(text='Да', callback_data='Да')
     markup_inline.add(item_yes)
-    bot.send_message(call.message.chat.id,
-                     text=f"Привет, {call.message.from_user.first_name}! Добро пожаловать в TurkaBot\nХотите заказать кофе?",
-                     reply_markup=markup_inline)
+    try:
+        bot.send_message(call.message.chat.id,
+                         text=f"Привет, {call.message.from_user.first_name}! Добро пожаловать в TurkaBot\nХотите заказать кофе?",
+                         reply_markup=markup_inline)
+    except:
+        bot.send_message(call.chat.id,
+                         text=f"Привет, {call.from_user.first_name}! Добро пожаловать в TurkaBot\nХотите заказать кофе?",
+                         reply_markup=markup_inline)
+
+
 
 def menu_input_timer(call):
     markup_inline = types.InlineKeyboardMarkup()
@@ -107,9 +179,10 @@ def menu_input_timer(call):
     back = types.InlineKeyboardButton(text="Вернуться в главное меню", callback_data='main_menu')
     markup_inline.add(back)
     try:
-        bot.send_message(call.message.chat.id, text="\nВ данный момент функция в стадии разработки", reply_markup=markup_inline)
+        msg = bot.send_message(call.message.chat.id, text="\nВведите время в формате ЧЧ:ММ", reply_markup=markup_inline)
     except:
-        bot.send_message(call.chat.id, text="\nВ данный момент функция в стадии разработки", reply_markup=markup_inline)
+        msg = bot.send_message(call.chat.id, text="\nВ данный момент функция в стадии разработки", reply_markup=markup_inline)
+    bot.register_next_step_handler(msg,hand_timer)
 
 def menu_change_type_drinks(call):
     markup_inline = types.InlineKeyboardMarkup()
@@ -132,6 +205,7 @@ def menu_change_type(call):
     menu = json_manager.read_json()
     items = ord.get_type_drink()
     for type in menu['drinks'][items]:
+
         type = types.InlineKeyboardButton(text=type, callback_data=type)
         markup_inline.add(type)
 
@@ -148,6 +222,7 @@ def menu_change_size(call):
     menu = json_manager.read_json()
 
     for type in menu['drinks'][ord.get_type_drink()][ord.get_type()]:
+        bot.send_message(call.message.chat.id, text=f"{menu['drinks'][ord.get_type_drink()][ord.get_type()][f'{type}']['price']}")
         type = types.InlineKeyboardButton(text=type, callback_data=type)
         markup_inline.add(type)
 
@@ -206,6 +281,10 @@ def menu_change_time(call):
     except:
         bot.send_message(call.chat.id, text=f"\nВремя подачи вашего кофе:{hrs}:{min}", reply_markup=markup_inline)
 
+
+
+def final_order():
+    pass
 
 
 bot.enable_save_next_step_handlers(delay=2)
