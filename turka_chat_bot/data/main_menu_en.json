@@ -1,0 +1,168 @@
+{
+    "drinks": {
+        "coffee": {
+            "espresso": {
+                "single": {
+                    "price": "2.8",
+                    "ml": "0",
+                    "type_additive": ["mill", "topping"]
+                },
+                "double": {
+                    "price": "3.2",
+                    "ml": "0",
+                    "type_additive": ["mill", "topping"]
+                }
+            },
+            "americano": {
+                "big": {
+                    "price": "3.5",
+                    "ml": "0",
+                    "type_additive": ["mill", "topping"]
+                },
+                "standard": {
+                    "price": "3",
+                    "ml": "0",
+                    "type_additive": ["mill", "topping"]
+                }
+            },
+            "cappuccino": {
+                "big": {
+                    "price": "4,4",
+                    "ml": "300",
+                    "type_additive": ["mill", "topping"]
+                },
+                "standard": {
+                    "price": "3.5",
+                    "ml": "180",
+                    "type_additive": ["mill", "topping"]
+                }
+            },
+            "latte": {
+                "big": {
+                    "price": "4.5",
+                    "ml": "300",
+                    "type_additive": ["mill", "topping"]
+                },
+                "standard": {
+                    "price": "3.6",
+                    "ml": "180",
+                    "type_additive": ["mill", "topping"]
+                }
+            },
+            "flat": {
+                "ordinary": {
+                    "price": "3.6",
+                    "ml": "180",
+                    "type_additive": ["mill", "topping"]
+                }
+            },
+            "raf": {
+                "classic": {
+                    "price": "4.5",
+                    "ml": "300",
+                    "type_additive": ["mill", "topping"]
+                },
+                "halvich": {
+                    "price": "4.6",
+                    "ml": "300",
+                    "type_additive": ["mill", "topping"]
+                },
+                "peanut": {
+                    "price": "4.9",
+                    "ml": "300",
+                    "type_additive": ["mill", "topping"]
+                }
+            },
+            "plant coffee": {
+                "standart": {
+                    "ml": "180",
+                    "price": "5.3",
+                    "type_additive": ["mill", "topping"]
+                }
+            },
+            "author's coffee": {
+                "with condensed milk": {
+                    "price": "4.5",
+                    "ml": "300",
+                    "type_additive": ["mill", "topping"]
+                },
+                "americano with whole spices": {
+                    "price": "4.6",
+                    "ml": "300"
+                },
+                "with chocolate": {
+                    "price": "4.9",
+                    "ml": "300"
+                }
+            },
+            "bumble coffee": {
+                "ordinary": {
+                    "price": "4.5",
+                    "ml": "180",
+                    "type_additive": ["mill", "topping"]
+                }
+            },
+            "coffee Salted Caramel": {
+                "ordinary": {
+                    "price": "5",
+                    "ml": "300",
+                    "type_additive": ["mill", "topping"]
+                }
+            },
+            "children's Cappuccino": {
+                "standart": {
+                    "price": "3",
+                "ml": "300",
+                "type_additive": ["mill", "topping"]
+                }
+            }
+        },
+        "tea": {
+            "green": {
+                "sencha": {
+                    "price": "3",
+                    "ml": "300",
+                    "type_additive": ["mill", "topping"]
+                },
+                "herbal mix": {
+                    "price": "3",
+                    "ml": "300",
+                    "type_additive": ["mill", "topping"]
+                }
+            },
+            "black": {
+                "classic": {
+                    "price": "3",
+                    "ml": "300",
+                    "type_additive": ["mill", "topping"]
+                },
+                "with bergamot": {
+                    "price": "3",
+                    "ml": "300",
+                    "type_additive": ["mill", "topping"]
+                },
+                "with rose and grapes": {
+                    "price": "3",
+                    "ml": "300",
+                    "type_additive": ["mill", "topping"]
+                }
+            }
+        },
+        "hot chocolate": {
+            "ordinary": {
+                "standart":
+                {
+                    "price": "4",
+                    "ml": "180",
+                    "type_additive": ["mill", "topping"]
+                }
+            }
+        }
+    },
+    "topping": {
+        "strawberry": {
+            "price": "5"
+        }
+    },
+    "milk": ["Soy", "almond", "coconut", "hazelnut"]
+}

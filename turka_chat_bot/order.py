@@ -6,8 +6,9 @@ topping='default'
 # filing_time=datetime.datetime.now()
 
 class order:
-    def __init__(self,type='default',size='default',topping='default',):
+    def __init__(self,type='отсутствует',type_drink='отсутствует',size='отсутствует',topping='отсутствует',):
         self.type = type
+        self.type_drink = type_drink
         self.size = size
         self.topping = topping
         self.hours = 0
@@ -39,6 +40,9 @@ class order:
     def set_type(self, type):
         self.type = type
 
+    def set_type_drink(self, type):
+        self.type_drink = type
+
     def set_topping(self, topping):
         self.topping = topping
 
@@ -59,3 +63,12 @@ class order:
     def get_full_order(self):
         return f'{self.type} {self.size} Сироп: {self.topping} к {self.hours}:{self.min}'
 
+    def get_type(self):
+        return self.type
+
+    def get_type_drink(self):
+        return self.type_drink
+
+
+# ord = order()
+# e = ord.get_type()

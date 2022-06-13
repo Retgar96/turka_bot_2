@@ -1,0 +1,167 @@
+{
+  "drinks ":{
+    "Кофе": {
+      "Эспрессо": {
+        "одиночный": {
+          "price": "2.8",
+          "ml": "0",
+          "type_additive" :["mill","topping"]
+        },
+        "двойной": {
+          "price": "3.2",
+          "ml": "0",
+          "type_additive" :["mill","topping"]
+        }
+      },
+      "Американо": {
+        "Большой": {
+          "price": "3,5",
+          "ml": "0",
+          "type_additive" :["mill","topping"]
+        },
+        "Стандартный": {
+          "price": "3",
+          "ml": "0",
+          "type_additive" :["mill","topping"]
+        }
+      },
+      "Капучино": {
+        "Большой": {
+          "price": "4,4",
+          "ml": "300",
+          "type_additive" :["mill","topping"]
+        },
+        "Стандартный": {
+          "price": "3.5",
+          "ml": "180",
+          "type_additive" :["mill","topping"]
+        }
+      },
+      "Латте": {
+        "Большой": {
+          "price": "4,5",
+          "ml": "300",
+          "type_additive" :["mill","topping"]
+        },
+        "Стандартный": {
+          "price": "3.6",
+          "ml": "180",
+          "type_additive" :["mill","topping"]
+        }
+      },
+      "Флет": {
+        "Обычный": {
+          "price": "3.6",
+          "ml": "180",
+          "type_additive" :["mill","topping"]
+        }
+      },
+      "Раф": {
+        "Классика": {
+          "price": "4,5",
+          "ml": "300",
+          "type_additive" :["mill","topping"]
+        },
+        "Халвичный": {
+          "price": "4.6",
+          "ml": "300",
+          "type_additive" :["mill","topping"]
+        },
+        "Арахисовый": {
+          "price": "4.9",
+          "ml": "300",
+          "type_additive" :["mill","topping"]
+        }
+      },
+      "Растительный кофе": {
+        "ml": "180",
+        "price": "5.3",
+        "type_additive" :["mill","topping"]
+      },
+      "Авторский кофе": {
+        "Со сгущенкой": {
+          "price": "4,5",
+          "ml": "300",
+          "type_additive" :["mill","topping"]
+        },
+        "Американо с цельными специями": {
+          "price": "4.6",
+          "ml": "300"
+        },
+        "С шоколадом": {
+          "price": "4.9",
+          "ml": "300"
+        }
+      },
+      "Бамбл кофе":{
+        "Обычный": {
+          "price": "4.5",
+          "ml": "180",
+          "type_additive" :["mill","topping"]
+        }
+      },
+      "Кофе Соленая карамель":{
+        "Обычный": {
+          "price": "5",
+          "ml": "300",
+          "type_additive" :["mill","topping"]
+        }
+      },
+      "Детский капучино ":{
+        "price": "3",
+        "ml": "300",
+        "type_additive" :["mill","topping"]
+      }
+  },
+    "Чай": {
+    "Зеленый":{
+      "сенча":{
+        "price": "3",
+        "ml": "300",
+        "type_additive" :["mill","topping"]
+      },
+      "травяной микс":{
+        "price": "3",
+        "ml": "300",
+        "type_additive" :["mill","topping"]
+      }
+    },
+    "Черный":{
+      "классика":{
+        "price": "3",
+        "ml": "300",
+        "type_additive" :["mill","topping"]
+      },
+      "с бергамотом":{
+        "price": "3",
+        "ml": "300",
+        "type_additive" :["mill","topping"]
+      },
+       "с розой и виноградом":{
+        "price": "3",
+        "ml": "300",
+         "type_additive" :["mill","topping"]
+      }
+    }
+  },
+    "Горячий шоколад": {
+      "Обычный": {
+        "price": "4",
+        "ml": "180",
+        "type_additive": [
+          "mill",
+          "topping"
+        ]
+      }
+  }
+  },
+  "topping": {
+    "name":"0"
+  },
+  "milk": [
+          "Соевое",
+          "миндальное",
+          "кокосовое",
+          "фундучное"
+        ]
+}
